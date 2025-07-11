@@ -1,8 +1,12 @@
-import { Dream } from "./types.js";
+interface Dream {
+    id: number,
+    name: string,
+    theme: string,
+    checked: boolean
+}
 
 export let themes = ["teknikdrömmar", "vardagsdrömmar", "husdrömmar", "sportdrömmar", "resdrömmar"];
-export const defaultName = "NAMN";
-export const minPasswordLength = 4;
+export let name = "NAMN";
 
 export const dreams: Dream[] = [{
     id: 1,

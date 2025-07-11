@@ -1,21 +1,45 @@
-import { defaultName } from "../models/variables.js"
-import { elementNullCheck } from "../utils/domHelpers.js"
-import { validateUsername, validatePassword } from "../utils/validation.js"
-import { storeUser } from "../utils/storage.js"
+const loginBtn = document.getElementById("loginBtn") as HTMLButtonElement;
+const eyeButton = document.getElementById("eyeBtn") as HTMLButtonElement;
+const usernameInput = document.getElementById("username") as HTMLInputElement;
+const passwordInput = document.getElementById("password") as HTMLInputElement;
+const userNameError = document.getElementById("username-error-message") as HTMLParagraphElement;
+const passwordError = document.getElementById("password-error-message") as HTMLParagraphElement;
+const form = document.getElementById("login-form") as HTMLFormElement;
 
-const loginButton = elementNullCheck<HTMLButtonElement>("#btn-login");
 
-loginButton.addEventListener("click", () => {
-  const usernameInput = elementNullCheck<HTMLInputElement>("#username");
+const minPasswordLength = 4;
+
+eyeButton.addEventListener("click", () => {
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+  } else {
+    passwordInput.type = "password";
+  }
+});
+
+function validateUser(): boolean {
   const username = usernameInput.value;
-
-  const passwordInput = elementNullCheck<HTMLInputElement>("#password");
   const password = passwordInput.value;
 
-  if (!validatePassword(password) || !validateUsername(username)) {
-    alert("Invalid username or password.");
-    return;
+  if (!username || username === "") {
+    userNameError.classList.remove("hidden");
+    return false;
   }
-  storeUser(username, password);
-  window.location.replace("dashboard.html");
+  if (!password || password.length < minPasswordLength) {
+    passwordError.classList.remove("hidden");
+    alert("Ange ett lösenord med minst 4 tecken.");
+    return false;
+  }
+  return true;
+}
+
+
+loginBtn.addEventListener("click", (event: Event) => {
+  event.preventDefault();
+  console.log("klickat!");
+  if (!validateUser()) {
+    return;
+  }else {
+    form.submit();
+  }
 });

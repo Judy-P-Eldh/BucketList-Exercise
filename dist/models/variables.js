@@ -1,6 +1,5 @@
 export let themes = ["teknikdrömmar", "vardagsdrömmar", "husdrömmar", "sportdrömmar", "resdrömmar"];
-export const defaultName = "NAMN";
-export const minPasswordLength = 4;
+export let name = "NAMN";
 export const dreams = [{
         id: 1,
         name: "Lära mig HTML/CSS",
