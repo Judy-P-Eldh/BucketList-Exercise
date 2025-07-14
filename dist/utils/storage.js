@@ -1,18 +1,21 @@
-export function storeUser(username, password) {
-    sessionStorage.setItem("username", username);
-    sessionStorage.setItem("password", password);
-}
-export function getUser() {
-    return sessionStorage.getItem("username");
-}
-export function getPassword() {
-    return sessionStorage.getItem("password");
-}
-export function removeUser() {
-    sessionStorage.removeItem("username");
-    sessionStorage.removeItem("password");
-}
-export function changeUsername(newUsername) {
-    sessionStorage.setItem("username", newUsername);
-}
+"use strict";
+// export function storeUser(username: string, password: string) {
+//     sessionStorage.setItem("username", username);
+//     sessionStorage.setItem("password", password);
+// }
+// export function getUser(): string | null {
+//     return sessionStorage.getItem("username");
+// }
+// export function getPassword(): string | null {
+//     return sessionStorage.getItem("password");
+// }
+// export function removeUser() {
+//     sessionStorage.removeItem("username");
+//     sessionStorage.removeItem("password");
+// }
+// export function changeUsername(newUsername: string) {
+//     sessionStorage.setItem("username", newUsername);
+// }
+// export function addDream () {
+// }
 //# sourceMappingURL=storage.js.map

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/add-dream.css">
     <title>Bucketlist - Nytt mål</title>
+    <script type="module" src="/dist/pages/aaddDream.js" defer></script>
 </head>
 <body>
     <header>
@@ -21,10 +22,10 @@
     </header>
     <main>
         <h2>Lägg till en ny dröm</h2>
-        <form>
+        <form id="dreamForm">
             <label for="dream">Dröm:</label>
             <input type="text" id="dream" placeholder="Ex. Besök Machu Picchu" aria-describedby="dream-error-message" required />
-            <p id="dream-error-message" class="error-message" role="alert" style="display: none;">Vänligen ange vad du drömmer om.</p>
+            <p id="dream-error-message" class="error-message hidden" role="alert">Vänligen ange vad du drömmer om.</p>
             <label for="dream-select">Tema:</label>
             <select id="dream-select" name="dream" aria-describedby="theme-error-message" required>
                 <option value="">-- Välj ett tema --</option>
@@ -34,7 +35,7 @@
                 <option value="sport">Sportdrömmar</option>
             </select> 
             <p id="theme-error-message" class="error-message" role="alert" style="display: none;">Vänligen välj ett tema för din dröm.</p>
-            <button type="submit">Lägg till</button>
+            <button id="addBtn" type="submit">Lägg till</button>
         </form>
     </main>
 </body>

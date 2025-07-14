@@ -1,9 +1,9 @@
 // här är det bara level-up!
 import { name, themes } from "../models/variables.js";
-import { getUser, changeUsername, removeUser } from "../utils/storage";
+// import { getUser, changeUsername, removeUser } from "../utils/storage";
 
 const nameInput = document.getElementById("name-input") as HTMLInputElement;
-nameInput.value = getUser() || name;
+// nameInput.value = getUser() || name;
 
 const themeList = document.getElementById("theme-list") as HTMLUListElement;
 if (themeList) {
@@ -19,7 +19,7 @@ const logOutBtn = document.querySelector(".logout");
 logOutBtn?.addEventListener("click", logOut);
 
 function logOut(): void {
-    removeUser();
+    // removeUser();
     window.location.replace('login.html');
 };
 

@@ -1,29 +1,23 @@
-interface Dream {
-    id: number,
-    name: string,
-    theme: string,
-    checked: boolean
-}
 
+import { Dream } from "../models/Dream";
 export let themes = ["teknikdrömmar", "vardagsdrömmar", "husdrömmar", "sportdrömmar", "resdrömmar"];
 export let name = "NAMN";
+export let dreams: Dream[] = [];
 
-export const dreams: Dream[] = [{
-    id: 1,
-    name: "Lära mig HTML/CSS",
-    theme: "teknikdrömmar",
-    checked: true
-},
-{
-    id: 2,
-    name: "Lära mig TypeScript",
-    theme: "teknikdrömmar",
-    checked: false
-},
-{
-    id: 3,
-    name: "En dröm som tar flera rader lorem ipsum",
-    theme: "vardagsdrömmar",
-    checked: false
+// Använd local storage för att spara.
+
+export function storeDreamList(dreams: Dream[]) {
+    const dreamListAsString = JSON.stringify(dreams);
+    localStorage.setItem("dreams", dreamListAsString);
 }
-]
+
+export function LogDreamList() {
+console.log(dreams.length);
+console.log(dreams);
+}
+
+const dreamListAsString = localStorage.getItem("dreams");
+if (dreamListAsString) {
+    const dreamsList = JSON.parse(dreamListAsString);
+    dreams = dreamsList;
+}

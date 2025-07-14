@@ -7,3 +7,11 @@
      font-weight: 400;
      margin: var(--spacing-medium);
  }
+
+ .hidden {
+   display: none;
+ }
+
+ .error-message {
+    color: red;
+ }

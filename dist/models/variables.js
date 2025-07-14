@@ -1,22 +1,18 @@
 export let themes = ["teknikdrömmar", "vardagsdrömmar", "husdrömmar", "sportdrömmar", "resdrömmar"];
 export let name = "NAMN";
-export const dreams = [{
-        id: 1,
-        name: "Lära mig HTML/CSS",
-        theme: "teknikdrömmar",
-        checked: true
-    },
-    {
-        id: 2,
-        name: "Lära mig TypeScript",
-        theme: "teknikdrömmar",
-        checked: false
-    },
-    {
-        id: 3,
-        name: "En dröm som tar flera rader lorem ipsum",
-        theme: "vardagsdrömmar",
-        checked: false
-    }
-];
+export let dreams = [];
+// Använd local storage för att spara.
+export function storeDreamList(dreams) {
+    const dreamListAsString = JSON.stringify(dreams);
+    localStorage.setItem("dreams", dreamListAsString);
+}
+export function LogDreamList() {
+    console.log(dreams.length);
+    console.log(dreams);
+}
+const dreamListAsString = localStorage.getItem("dreams");
+if (dreamListAsString) {
+    const dreamsList = JSON.parse(dreamListAsString);
+    dreams = dreamsList;
+}
 //# sourceMappingURL=variables.js.map

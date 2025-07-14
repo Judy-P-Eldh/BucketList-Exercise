@@ -1,8 +1,8 @@
 // här är det bara level-up!
-import { name, themes } from "../models/variables.js";
-import { getUser, removeUser } from "../utils/storage";
+import { themes } from "../models/variables.js";
+// import { getUser, changeUsername, removeUser } from "../utils/storage";
 const nameInput = document.getElementById("name-input");
-nameInput.value = getUser() || name;
+// nameInput.value = getUser() || name;
 const themeList = document.getElementById("theme-list");
 if (themeList) {
     themes.forEach((theme, index) => {
@@ -15,7 +15,7 @@ if (themeList) {
 const logOutBtn = document.querySelector(".logout");
 logOutBtn === null || logOutBtn === void 0 ? void 0 : logOutBtn.addEventListener("click", logOut);
 function logOut() {
-    removeUser();
+    // removeUser();
     window.location.replace('login.html');
 }
 ;
