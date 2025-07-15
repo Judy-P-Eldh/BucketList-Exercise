@@ -1,4 +1,4 @@
-"use strict";
+import { storeUser } from "../models/User.js";
 const loginBtn = document.getElementById("loginBtn");
 const eyeButton = document.getElementById("eyeBtn");
 const usernameInput = document.getElementById("username");
@@ -27,11 +27,17 @@ function validateUser() {
         alert("Ange ett lösenord med minst 4 tecken.");
         return false;
     }
+    const newUser = {
+        id: 1,
+        name: username,
+        password: password
+    };
+    storeUser(newUser);
     return true;
 }
 loginBtn.addEventListener("click", (event) => {
     event.preventDefault();
-    console.log("klickat!");
+    //console.log("klickat!");
     if (!validateUser()) {
         return;
     }

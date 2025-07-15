@@ -1,5 +1,14 @@
 import { dreams, } from "../models/variables.js";
 const dreamList = document.querySelector(".dream-list");
+const userName = document.getElementById("user-name");
+function showUserName() {
+    const userString = localStorage.getItem("user");
+    if (userString) {
+        const user = JSON.parse(userString);
+        userName.innerText = `${user.name}!`;
+    }
+}
+showUserName();
 function renderList() {
     dreams.forEach(dream => {
         const listItem = document.createElement("li");

@@ -1,6 +1,16 @@
 import { dreams, } from "../models/variables.js";
 
 const dreamList = document.querySelector(".dream-list") as HTMLUListElement;
+const userName = document.getElementById("user-name") as HTMLSpanElement;
+
+function showUserName() {
+    const userString = localStorage.getItem("user");
+    if (userString) {
+        const user = JSON.parse(userString);
+        userName.innerText = `${user.name}!`;
+    }
+}
+showUserName();
 
 function renderList(): void {
     dreams.forEach(dream => {

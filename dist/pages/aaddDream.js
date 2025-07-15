@@ -17,7 +17,7 @@ function addDream() {
         lastDreamIndex = lastDreamIndex + 1;
     }
     const newDream = {
-        id: 2,
+        id: lastDreamIndex,
         name: dreamInput.value,
         theme: themeInput.value,
         checked: false
