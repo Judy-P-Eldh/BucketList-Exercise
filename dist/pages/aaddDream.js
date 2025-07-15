@@ -3,7 +3,6 @@ import { storeDream } from "../models/Dream.js";
 const dreamForm = document.getElementById("dreamForm");
 const dreamInput = document.getElementById("dream");
 const themeInput = document.getElementById("dream-select");
-const addBtn = document.getElementById("addBtn");
 const dreamErrorMessage = document.getElementById("dream-error-message");
 function addDream() {
     if (dreams) {
@@ -12,12 +11,24 @@ function addDream() {
     if (!dreamInput || dreamInput.value === "") {
         dreamErrorMessage.classList.remove("hidden");
     }
-    let lastDreamIndex = dreams.length - 1;
+    // skapa unikt ID
+    let newId;
     if (dreams.length > 0) {
-        lastDreamIndex = lastDreamIndex + 1;
+        // ta reda på vad nästa id i listan ska bli
+        let maxId = 0;
+        for (const dream of dreams) {
+            if (dream.id > maxId) {
+                maxId = dream.id;
+            }
+        }
+        newId = maxId + 1;
+    }
+    else {
+        // om ingen dröm finns -> tar vi ID 1
+        newId = 1;
     }
     const newDream = {
-        id: lastDreamIndex,
+        id: newId,
         name: dreamInput.value,
         theme: themeInput.value,
         checked: false

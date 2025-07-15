@@ -4,7 +4,6 @@ import { Dream, storeDream } from "../models/Dream.js";
 const dreamForm = document.getElementById("dreamForm") as HTMLFormElement;
 const dreamInput = document.getElementById("dream") as HTMLInputElement;
 const themeInput = document.getElementById("dream-select") as HTMLSelectElement;
-const addBtn = document.getElementById("addBtn") as HTMLButtonElement;
 const dreamErrorMessage = document.getElementById("dream-error-message") as HTMLParagraphElement;
 
 function addDream() {
@@ -15,13 +14,24 @@ function addDream() {
         dreamErrorMessage.classList.remove("hidden");
     }
 
-    let lastDreamIndex = dreams.length - 1;
+    // skapa unikt ID
+    let newId: number;
     if (dreams.length > 0) {
-        lastDreamIndex = lastDreamIndex + 1;
+        // ta reda på vad nästa id i listan ska bli
+        let maxId = 0;
+        for (const dream of dreams) {
+            if (dream.id > maxId) {
+                maxId = dream.id;
+            }
+        }
+        newId = maxId + 1;
+    } else {
+        // om ingen dröm finns -> tar vi ID 1
+        newId = 1;
     }
 
     const newDream: Dream = {
-        id: lastDreamIndex,
+        id: newId,
         name: dreamInput.value,
         theme: themeInput.value,
         checked: false
