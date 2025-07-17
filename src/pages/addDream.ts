@@ -1,4 +1,4 @@
-import { dreams, LogDreamList, storeDreamList } from "../models/variables.js";
+import { dreams, loadDreams, loadThemes, storeDreamList, themes } from "../models/variables.js";
 import { Dream, storeDream } from "../models/Dream.js";
 
 const dreamForm = document.getElementById("dreamForm") as HTMLFormElement;
@@ -6,7 +6,22 @@ const dreamInput = document.getElementById("dream") as HTMLInputElement;
 const themeInput = document.getElementById("dream-select") as HTMLSelectElement;
 const dreamErrorMessage = document.getElementById("dream-error-message") as HTMLParagraphElement;
 
+function displayThemes(): void {
+    themeInput.innerHTML = ''; // Clear existing options
+    let themes = loadThemes();
+    themes.forEach((theme) => {
+        const option = document.createElement("option");
+        option.value = theme;
+        option.textContent = theme;
+        themeInput.appendChild(option);
+    });
+}
+//console.log(themes);
+displayThemes();
+
+
 function addDream() {
+    let dreams = loadDreams();
     if (dreams) {
         console.log(dreams.length);
     }
@@ -38,11 +53,9 @@ function addDream() {
     }
 
     storeDream(newDream);
-    //console.log(newDream);
-
     dreams.push(newDream);
     storeDreamList(dreams);
-    LogDreamList();
+    //LogDreamList();
 }
 
 dreamForm.addEventListener("submit", (event: Event) => {

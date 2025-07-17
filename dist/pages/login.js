@@ -37,7 +37,6 @@ function validateUser() {
 }
 loginBtn.addEventListener("click", (event) => {
     event.preventDefault();
-    //console.log("klickat!");
     if (!validateUser()) {
         return;
     }

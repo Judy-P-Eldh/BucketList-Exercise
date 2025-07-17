@@ -1,10 +1,23 @@
-import { dreams, LogDreamList, storeDreamList } from "../models/variables.js";
+import { loadDreams, loadThemes, storeDreamList } from "../models/variables.js";
 import { storeDream } from "../models/Dream.js";
 const dreamForm = document.getElementById("dreamForm");
 const dreamInput = document.getElementById("dream");
 const themeInput = document.getElementById("dream-select");
 const dreamErrorMessage = document.getElementById("dream-error-message");
+function displayThemes() {
+    themeInput.innerHTML = ''; // Clear existing options
+    let themes = loadThemes();
+    themes.forEach((theme) => {
+        const option = document.createElement("option");
+        option.value = theme;
+        option.textContent = theme;
+        themeInput.appendChild(option);
+    });
+}
+//console.log(themes);
+displayThemes();
 function addDream() {
+    let dreams = loadDreams();
     if (dreams) {
         console.log(dreams.length);
     }
@@ -34,10 +47,9 @@ function addDream() {
         checked: false
     };
     storeDream(newDream);
-    //console.log(newDream);
     dreams.push(newDream);
     storeDreamList(dreams);
-    LogDreamList();
+    //LogDreamList();
 }
 dreamForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -45,4 +57,4 @@ dreamForm.addEventListener("submit", (event) => {
     window.location.href = "dashboard.html";
     //console.log(dreams);
 });
-//# sourceMappingURL=aaddDream.js.map
+//# sourceMappingURL=addDream.js.map

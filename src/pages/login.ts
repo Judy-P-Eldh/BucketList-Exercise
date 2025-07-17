@@ -44,7 +44,6 @@ function validateUser(): boolean {
 
 loginBtn.addEventListener("click", (event: Event) => {
   event.preventDefault();
-  //console.log("klickat!");
   if (!validateUser()) {
     return;
   }else {
