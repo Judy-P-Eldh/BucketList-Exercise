@@ -1,9 +1,28 @@
 import { loadDreams, loadThemes, storeDreamList } from "../models/variables.js";
 import { storeDream } from "../models/Dream.js";
+import { isLoggedIn } from "../models/User.js";
 const dreamForm = document.getElementById("dreamForm");
 const dreamInput = document.getElementById("dream");
 const themeInput = document.getElementById("dream-select");
 const dreamErrorMessage = document.getElementById("dream-error-message");
+const userName = document.getElementById("user-name");
+if (isLoggedIn()) {
+    showUserName();
+}
+else {
+    let message = "Du behöver logga in";
+    const p = document.createElement("p");
+    p.innerText = message;
+    document.body.appendChild(p);
+    window.location.href = "login.html";
+}
+function showUserName() {
+    const userString = localStorage.getItem("user");
+    if (userString) {
+        const user = JSON.parse(userString);
+        userName.innerText = `${user.name}!`;
+    }
+}
 function displayThemes() {
     themeInput.innerHTML = ''; // Clear existing options
     let themes = loadThemes();
@@ -14,7 +33,6 @@ function displayThemes() {
         themeInput.appendChild(option);
     });
 }
-//console.log(themes);
 displayThemes();
 function addDream() {
     let dreams = loadDreams();
@@ -49,12 +67,10 @@ function addDream() {
     storeDream(newDream);
     dreams.push(newDream);
     storeDreamList(dreams);
-    //LogDreamList();
 }
 dreamForm.addEventListener("submit", (event) => {
     event.preventDefault();
     addDream();
     window.location.href = "dashboard.html";
-    //console.log(dreams);
 });
 //# sourceMappingURL=addDream.js.map

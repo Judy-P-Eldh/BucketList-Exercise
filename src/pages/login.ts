@@ -1,4 +1,4 @@
-import { User, storeUser } from "../models/User.js";
+import { User, isLoggedIn, storeUser, storeUserSession } from "../models/User.js";
 
 const loginBtn = document.getElementById("loginBtn") as HTMLButtonElement;
 const eyeButton = document.getElementById("eyeBtn") as HTMLButtonElement;
@@ -33,20 +33,19 @@ function validateUser(): boolean {
   }
   const newUser: User = {
     id: 1,
-   name: username,
-   password: password 
+    name: username,
+    password: password
   }
 
   storeUser(newUser);
   return true;
 }
 
-
 loginBtn.addEventListener("click", (event: Event) => {
   event.preventDefault();
   if (!validateUser()) {
     return;
-  }else {
+  } else {
     form.submit();
   }
 });

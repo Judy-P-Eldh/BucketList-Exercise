@@ -1,6 +1,17 @@
+import { isLoggedIn } from "../models/User.js";
 import { dreams, loadDreams, storeDreamList } from "../models/variables.js";
 const dreamList = document.querySelector(".dream-list");
 const userName = document.getElementById("user-name");
+if (isLoggedIn()) {
+    showUserName();
+}
+else {
+    let message = "Du behöver logga in";
+    const p = document.createElement("p");
+    p.innerText = message;
+    document.body.appendChild(p);
+    window.location.href = "login.html";
+}
 function showUserName() {
     const userString = localStorage.getItem("user");
     if (userString) {
@@ -8,7 +19,6 @@ function showUserName() {
         userName.innerText = `${user.name}!`;
     }
 }
-showUserName();
 function debugDreams() {
     console.log(dreams.length);
     console.log(dreams.forEach(dream => console.log(dream.name, dream.id)));

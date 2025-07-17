@@ -3,6 +3,6 @@
 window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         window.location.replace('login.html');
-    }, 4000); // 4000 ms = 4 sekunder
+    }, 3000); // 4000 ms = 4 sekunder
 });
 //# sourceMappingURL=index.js.map
